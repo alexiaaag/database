@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+			
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffc107; /* Yellow color on hover */
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-status {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .logout-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Magazinul Meu Online</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Acasă</a></li>
+            <li><a href="{{ url_for('products') }}">Produse</a></li>
+            <li><a href="{{ url_for('reviews') }}">Recenzii Producători</a></li>
+            
+        </ul>
+    </nav>
+	
+	
+    <div class="login-status">
+        {% if 'loggedin' in session %}
+        <p>Ultima conectare: {{ session['last_login_date'] }}</p>
+           Bine ai venit, {{ session['username'] }}! <a href="{{ url_for('logout') }}" class="logout-btn">Deconectare</a>
+        {% else %}
+            Nu ești conectat. <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+    </div>
+    <main>
+        <h2>Opțiuni</h2>
+		<form action="/change_password_page" method="get">
+			<input type="submit" value="Schimbă parola">
+		</form>
+		<form action="/confirm_delete_account" method="get">
+			<input type="submit" value="Șterge acest cont">
+		</form>
+
+        
+        <h2>Statusul comenzilor pentru {{ client_info.Nume_Client }} {{ client_info.Prenume_Client }}</h2>
+        {% if result %}
+        <ul>
+            {% for res in result %}
+                <li>
+                   
+                    <strong>Data Plasării:</strong> {{ res.Data_Plasarii }}<br>
+                    <strong>Status Comandă:</strong> {{ res.Status_Comanda }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nu există comenzi pentru acest număr de telefon.</p>
+    {% endif %}
+        
+    </main>
+	
+</body>
+</html>

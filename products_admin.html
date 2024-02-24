@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffc107; /* Yellow color on hover */
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .category-box {
+            flex: 0 0 calc(33.33% - 20px);
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-status {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Magazinul Meu Online</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home_admin') }}">Acasă</a></li>
+            <li><a href="{{ url_for('products_admin') }}">Produse</a></li>
+            <li><a href="{{ url_for('vanzari_2023') }}">Vânzări 2023</a></li>
+            <li><a href="{{ url_for('vanzari_2024') }}">Marele Concurs</a></li>
+            <li><a href="{{ url_for('clienti_fideli') }}">Clienti Fideli</a></li>
+            <li><a href="{{ url_for('insert_product') }}">Introducere Produse</a></li>
+            <li><a href="{{ url_for('depozite') }}">Depozite</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <div class="category-box">
+            <h2>Laptopuri</h2>
+            <p>Actualizări secțiunea de laptopuri.</p>
+            <a href="{{ url_for('laptopuri_admin') }}">Vezi mai mult</a>
+        </div>
+        <div class="category-box">
+            <h2>Tablete</h2>
+            <p>Actualizări secțiunea de tablete.</p>
+            <a href="{{ url_for('tablete_admin') }}">Vezi mai mult</a>
+        </div>
+        <div class="category-box">
+            <h2>Accesorii</h2>
+            <p>Actualizări secțiunea de accesorii.</p>
+            <a href="{{ url_for('accesorii_admin') }}">Vezi mai mult</a>
+        </div>
+    </main>
+
+</body>
+</html>
